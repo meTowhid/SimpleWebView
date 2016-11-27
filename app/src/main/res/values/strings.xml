@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WebView</string>
+    <string name="app_name">WP Blogging</string>
     <string name="web_url">http://www.howtowpblogging.com/</string>
     <string name="url_ext">howtowpblogging.com</string>
 </resources>
