@@ -6,9 +6,20 @@
     android:layout_height="match_parent"
     tools:context="towhid.icurious.webview.MainActivity">
 
-
     <WebView
-        android:id="@+id/activity_main_webview"
+        android:id="@+id/webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+    <include
+        android:id="@+id/splash"
+        layout="@layout/activity_splash_screen" />
 </RelativeLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WP Blogging</string>
-    <string name="web_url">http://www.howtowpblogging.com/</string>
-    <string name="url_ext">howtowpblogging.com</string>
+    <string name="app_name">CRM Application</string>
+    <string name="splash_bottom">stsbd.com</string>
+    <string name="url">http://46.101.76.37/crm-application/web/</string>
 </resources>
