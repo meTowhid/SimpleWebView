@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        if (isOnline()) initWebView()
+        if (isOnline) initWebView()
         viewSplash()
     }
 
@@ -54,10 +54,11 @@ class MainActivity : AppCompatActivity() {
         else super.onBackPressed()
     }
 
-    private fun isOnline(): Boolean {
-        val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val connected = cm.activeNetworkInfo != null && cm.activeNetworkInfo.isConnectedOrConnecting
-        if (!connected) Toast.makeText(this, "Internet Connection Required", Toast.LENGTH_LONG).show()
-        return connected
-    }
+    private val isOnline: Boolean
+        get() {
+            val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val connected = cm.activeNetworkInfo != null && cm.activeNetworkInfo.isConnectedOrConnecting
+            if (!connected) Toast.makeText(this, "Internet Connection Required", Toast.LENGTH_LONG).show()
+            return connected
+        }
 }
