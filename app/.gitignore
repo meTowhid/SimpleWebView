@@ -1,1 +1,5 @@
 /build
+/release
+/RabemaxConfig
+/src/androidTest
+/src/test
