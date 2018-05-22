@@ -1,5 +1,6 @@
 package towhid.icurious.webview
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         viewSplash()
     }
 
+    @SuppressLint("SetJavaScriptEnabled", "AddJavascriptInterface")
     private fun initWebView() {
         webView?.apply {
             settings.javaScriptEnabled = true
@@ -29,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             // Stop local links and redirects from opening in browser instead of WebView
             webViewClient = object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                    view.loadUrl(url)
+                    if (isOnline) view.loadUrl(url)
                     return true
                 }
 

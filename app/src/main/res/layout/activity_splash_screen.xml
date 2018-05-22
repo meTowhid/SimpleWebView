@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff">
+    android:background="#0757b0">
 
     <ImageView
         android:layout_width="200dp"
@@ -16,6 +16,7 @@
         android:layout_alignParentBottom="true"
         android:gravity="center_horizontal"
         android:paddingBottom="@dimen/activity_horizontal_margin"
+        android:textColor="#fff"
         android:text="@string/splash_bottom"
         android:textSize="12sp" />
 
