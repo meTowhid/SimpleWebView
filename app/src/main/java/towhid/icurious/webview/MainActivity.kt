@@ -4,11 +4,11 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.os.Handler
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     private fun viewSplash() {
         Handler().postDelayed({
             splash?.visibility = View.GONE
-        }, 3000)
+        }, 2000)
     }
 
     override fun onBackPressed() {
@@ -56,8 +56,8 @@ class MainActivity : AppCompatActivity() {
     private val isOnline: Boolean
         get() {
             val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val connected = cm.activeNetworkInfo != null && cm.activeNetworkInfo.isConnectedOrConnecting
-            if (!connected) Toast.makeText(this, "Internet Connection Required", Toast.LENGTH_LONG).show()
-            return connected
+            return (cm.activeNetworkInfo?.isConnectedOrConnecting == true).also {
+                if (!it) Toast.makeText(this, "Internet Connection Required", Toast.LENGTH_LONG).show()
+            }
         }
 }

@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndroidProjects-SimpleWebView.iml" filepath="$PROJECT_DIR$/AndroidProjects-SimpleWebView.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SimpleWebView.iml" filepath="$PROJECT_DIR$/.idea/SimpleWebView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/SimpleWebView-app.iml" filepath="$PROJECT_DIR$/app/SimpleWebView-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
