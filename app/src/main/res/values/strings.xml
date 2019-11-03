@@ -2,4 +2,5 @@
     <string name="app_name">paidara</string>
     <string name="splash_bottom">paidara.com</string>
     <string name="url">http://paidara.com</string>
+    <string name="loading_video">Loading video…</string>
 </resources>
