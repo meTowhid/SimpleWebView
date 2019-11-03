@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
+
     private val chromeClient: VideoEnabledWebChromeClient by lazy {
         object : VideoEnabledWebChromeClient(
                 nonVideoLayout, // Your own view, read class comments
@@ -51,12 +52,17 @@ class MainActivity : AppCompatActivity() {
             webViewClient = object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(view: WebView, url: String) = true.also { view.loadUrl(url) }
             }
-            loadUrl(getString(R.string.url))
+            loadUrl(savedInstanceState?.getString("url", null) ?: getString(R.string.url))
         }
     }
 
     override fun onBackPressed() {
         if (webView != null && webView.canGoBack()) webView.goBack()
         else super.onBackPressed()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("url", webView.url)
     }
 }
