@@ -30,7 +30,7 @@ class VideoEnabledWebView : WebView {
      * @return true it the video is being displayed using a custom view (typically full-screen)
      */
     val isVideoFullscreen: Boolean
-        get() = videoEnabledWebChromeClient != null && videoEnabledWebChromeClient!!.isVideoFullscreen
+        get() = videoEnabledWebChromeClient?.isVideoFullscreen == true
 
     inner class JavascriptInterface {
         @android.webkit.JavascriptInterface

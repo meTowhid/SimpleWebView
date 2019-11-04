@@ -18,27 +18,24 @@ class MainActivity : AppCompatActivity() {
                 videoLayout as ViewGroup, // Your own view, read class comments
                 layoutInflater.inflate(R.layout.view_loading_video, null), // Your own view, read class comments
                 webView) {
-            // Subscribe to standard events, such as onProgressChanged()...
             override fun onProgressChanged(view: WebView, progress: Int) {
-                // Your code...
+                // Subscribe to standard events, such as onProgressChanged()...
             }
         }.also {
-            it.setOnToggledFullscreen(object : VideoEnabledWebChromeClient.ToggledFullscreenCallback {
-                override fun toggledFullscreen(fullscreen: Boolean) {
-                    // Your code to handle the full-screen change, for example showing and hiding the title bar. Example:
-                    val attrs = window.attributes
-                    if (fullscreen) {
-                        attrs.flags = attrs.flags or WindowManager.LayoutParams.FLAG_FULLSCREEN
-                        attrs.flags = attrs.flags or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-                    } else {
-                        attrs.flags = attrs.flags and WindowManager.LayoutParams.FLAG_FULLSCREEN.inv()
-                        attrs.flags = attrs.flags and WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON.inv()
-                    }
-                    window.attributes = attrs
-                    if (android.os.Build.VERSION.SDK_INT >= 14)
-                        window.decorView.systemUiVisibility = if (fullscreen) View.SYSTEM_UI_FLAG_LOW_PROFILE else View.SYSTEM_UI_FLAG_VISIBLE
+            it.toggledFullscreenCallback = { fullscreen ->
+                // Your code to handle the full-screen change, for example showing and hiding the title bar. Example:
+                val attrs = window.attributes
+                if (fullscreen) {
+                    attrs.flags = attrs.flags or WindowManager.LayoutParams.FLAG_FULLSCREEN
+                    attrs.flags = attrs.flags or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                } else {
+                    attrs.flags = attrs.flags and WindowManager.LayoutParams.FLAG_FULLSCREEN.inv()
+                    attrs.flags = attrs.flags and WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON.inv()
                 }
-            })
+                window.attributes = attrs
+                if (android.os.Build.VERSION.SDK_INT >= 14)
+                    window.decorView.systemUiVisibility = if (fullscreen) View.SYSTEM_UI_FLAG_LOW_PROFILE else View.SYSTEM_UI_FLAG_VISIBLE
+            }
         }
     }
 
@@ -57,8 +54,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (webView != null && webView.canGoBack()) webView.goBack()
-        else super.onBackPressed()
+        if (!chromeClient.onBackPressed())  // Notify the VideoEnabledWebChromeClient, and handle it ourselves if it doesn't handle it
+            if (webView.canGoBack()) webView.goBack() else super.onBackPressed()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
